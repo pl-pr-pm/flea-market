@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
 // jestのnode-configを利用できるはずだが・・・、なぜか読み取れないため、dotenvを利用するようにする
