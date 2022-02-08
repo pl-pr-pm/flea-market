@@ -14,12 +14,12 @@ import {
 import { CreateItemDto } from './dto/create-item.dto';
 import { Item } from '../entities/item.entity';
 import { ItemsService } from './items.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { GetUser } from 'src/auth/decorator/get-user.decorator';
-import { User } from 'src/entities/user.entity';
-import { UserStatus } from 'src/auth/user-status.enum';
-import { Role } from 'src/auth/decorator/role.decorator';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { GetUser } from '../auth/decorator/get-user.decorator';
+import { User } from '../entities/user.entity';
+import { UserStatus } from '../auth/user-status.enum';
+import { Role } from '../auth/decorator/role.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @Controller('items')
 @UseInterceptors(ClassSerializerInterceptor) // handlerの実行前後に処理を追加できる ＜ー interceptor
