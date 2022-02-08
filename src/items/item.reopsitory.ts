@@ -19,6 +19,6 @@ export class ItemRepository extends Repository<Item> {
     });
     await this.save(item); //このタイミングでテーブルが作成される
 
-    return;
+    return item;
   }
 }
