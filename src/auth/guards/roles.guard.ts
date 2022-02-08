@@ -9,15 +9,17 @@ export class RolesGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
+    // メタデータを取得
     const requiredStatuses = this.reflector.get<string[]>(
       'statuses',
       context.getHandler(),
     );
+    // デコレータに何も記述されていない場合は実行を許可する
     if (!requiredStatuses) {
       return true;
     }
 
-    const { user } = context.switchToHttp().getRequest();
+    const { user } = context.switchToHttp().getRequest(); // リクエストオブジェクトのuserプロパティを取得
     return requiredStatuses.some((status) => user.status.includes(status)); // userのstatusがメタデータにん保存されているいずれかのstatusと一致していれば、実行を許可
   }
 }
