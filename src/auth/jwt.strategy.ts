@@ -15,6 +15,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
   // 継承元で定義
+  // return された、userは、requestのプロパティとなる
+  // validate() が実行されていないエンドポイントでは、user は取得できない
   async validate(payload: { id: string; username: string }): Promise<User> {
     const { id, username } = payload;
     const user = await this.userRepository.findOne({ id, username });
