@@ -17,6 +17,9 @@ import { ItemsService } from './items.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { GetUser } from 'src/auth/decorator/get-user.decorator';
 import { User } from 'src/entities/user.entity';
+import { UserStatus } from 'src/auth/user-status.enum';
+import { Role } from 'src/auth/decorator/role.decorator';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Controller('items')
 @UseInterceptors(ClassSerializerInterceptor) // handlerの実行前後に処理を追加できる ＜ー interceptor
@@ -32,7 +35,8 @@ export class ItemsController {
   }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @Role(UserStatus.PREMIUM)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   async create(
     @Body() createItemDto: CreateItemDto,
     @GetUser() user: User,
